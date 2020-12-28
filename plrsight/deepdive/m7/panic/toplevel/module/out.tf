@@ -1,0 +1,3 @@
+output "myname" {
+    value = "Rajesh"
+}

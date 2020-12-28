@@ -1,0 +1,24 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] google_storage_bucket.b1" [label = "google_storage_bucket.b1", shape = "box"]
+		"[root] google_storage_bucket.b2" [label = "google_storage_bucket.b2", shape = "box"]
+		"[root] provider.google" [label = "provider.google", shape = "diamond"]
+		"[root] var.projectid" [label = "var.projectid", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] var.zone" [label = "var.zone", shape = "note"]
+		"[root] google_storage_bucket.b1" -> "[root] provider.google"
+		"[root] google_storage_bucket.b2" -> "[root] provider.google"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] google_storage_bucket.b1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] google_storage_bucket.b2"
+		"[root] provider.google (close)" -> "[root] google_storage_bucket.b1"
+		"[root] provider.google (close)" -> "[root] google_storage_bucket.b2"
+		"[root] provider.google" -> "[root] var.projectid"
+		"[root] provider.google" -> "[root] var.region"
+		"[root] provider.google" -> "[root] var.zone"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider.google (close)"
+	}
+}
+

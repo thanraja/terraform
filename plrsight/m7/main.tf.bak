@@ -1,0 +1,20 @@
+resource "random_integer" "rand" {
+    min = 1000000
+    max = 9999999
+}
+
+output "randint" {
+    value = random_integer.rand.result
+}
+locals {
+    a_map = {
+        key = "value"
+    }
+}
+
+output "a_map" {
+    value = local.a_map
+}
+output "mod_map" {
+    value = merge(local.a_map,{ Name = "Rajesh" })
+}

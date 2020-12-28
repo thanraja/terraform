@@ -1,0 +1,95 @@
+[0m# data.google_compute_image.myimage:
+data "google_compute_image" "myimage" {
+    [1m[0marchive_size_bytes[0m[0m = 1188432960
+    [1m[0mcreation_timestamp[0m[0m = "2020-12-17T09:17:28.949-08:00"
+    [1m[0mdescription[0m[0m        = "Debian, Debian GNU/Linux, 10 (buster), amd64 built on 20201216, supports Shielded VM features"
+    [1m[0mdisk_size_gb[0m[0m       = 10
+    [1m[0mfamily[0m[0m             = "debian-10"
+    [1m[0mid[0m[0m                 = "projects/debian-cloud/global/images/debian-10-buster-v20201216"
+    [1m[0mimage_id[0m[0m           = "208336788252929095"
+    [1m[0mlabel_fingerprint[0m[0m  = "42WmSpB8rSM="
+    [1m[0mlabels[0m[0m             = {}
+    [1m[0mlicenses[0m[0m           = [
+        "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-10-buster",
+    ]
+    [1m[0mname[0m[0m               = "debian-10-buster-v20201216"
+    [1m[0mproject[0m[0m            = "debian-cloud"
+    [1m[0mself_link[0m[0m          = "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20201216"
+    [1m[0mstatus[0m[0m             = "READY"
+}
+
+# google_compute_disk.mydisk:
+resource "google_compute_disk" "mydisk" {
+    [1m[0mcreation_timestamp[0m[0m        = "2020-12-20T17:47:14.081-08:00"
+    [1m[0mid[0m[0m                        = "projects/proj-demo-120/zones/us-east1-b/disks/jenkins"
+    [1m[0mimage[0m[0m                     = "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20201216"
+    [1m[0mlabel_fingerprint[0m[0m         = "42WmSpB8rSM="
+    [1m[0mname[0m[0m                      = "jenkins"
+    [1m[0mphysical_block_size_bytes[0m[0m = 4096
+    [1m[0mproject[0m[0m                   = "proj-demo-120"
+    [1m[0mself_link[0m[0m                 = "https://www.googleapis.com/compute/v1/projects/proj-demo-120/zones/us-east1-b/disks/jenkins"
+    [1m[0msize[0m[0m                      = 10
+    [1m[0msource_image_id[0m[0m           = "208336788252929095"
+    [1m[0mtype[0m[0m                      = "pd-ssd"
+    [1m[0musers[0m[0m                     = []
+    [1m[0mzone[0m[0m                      = "us-east1-b"
+}
+
+# google_compute_instance.myinstance:
+resource "google_compute_instance" "myinstance" {
+    [1m[0mcan_ip_forward[0m[0m       = false
+    [1m[0mcpu_platform[0m[0m         = "Intel Haswell"
+    [1m[0mcurrent_status[0m[0m       = "RUNNING"
+    [1m[0mdeletion_protection[0m[0m  = false
+    [1m[0menable_display[0m[0m       = false
+    [1m[0mguest_accelerator[0m[0m    = []
+    [1m[0mid[0m[0m                   = "projects/proj-demo-120/zones/us-east1-b/instances/jenkins"
+    [1m[0minstance_id[0m[0m          = "6642692663792517186"
+    [1m[0mlabel_fingerprint[0m[0m    = "42WmSpB8rSM="
+    [1m[0mmachine_type[0m[0m         = "f1-micro"
+    [1m[0mmetadata_fingerprint[0m[0m = "bWAZrzmeFKc="
+    [1m[0mname[0m[0m                 = "jenkins"
+    [1m[0mproject[0m[0m              = "proj-demo-120"
+    [1m[0mself_link[0m[0m            = "https://www.googleapis.com/compute/v1/projects/proj-demo-120/zones/us-east1-b/instances/jenkins"
+    [1m[0mtags_fingerprint[0m[0m     = "42WmSpB8rSM="
+    [1m[0mzone[0m[0m                 = "us-east1-b"
+
+    boot_disk {
+        [1m[0mauto_delete[0m[0m = true
+        [1m[0mdevice_name[0m[0m = "persistent-disk-0"
+        [1m[0mmode[0m[0m        = "READ_WRITE"
+        [1m[0msource[0m[0m      = "https://www.googleapis.com/compute/v1/projects/proj-demo-120/zones/us-east1-b/disks/jenkins"
+
+        initialize_params {
+            [1m[0mimage[0m[0m  = "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20201216"
+            [1m[0mlabels[0m[0m = {}
+            [1m[0msize[0m[0m   = 10
+            [1m[0mtype[0m[0m   = "pd-ssd"
+        }
+    }
+
+    network_interface {
+        [1m[0mname[0m[0m               = "nic0"
+        [1m[0mnetwork[0m[0m            = "https://www.googleapis.com/compute/v1/projects/proj-demo-120/global/networks/default"
+        [1m[0mnetwork_ip[0m[0m         = "10.142.0.7"
+        [1m[0msubnetwork[0m[0m         = "https://www.googleapis.com/compute/v1/projects/proj-demo-120/regions/us-east1/subnetworks/default"
+        [1m[0msubnetwork_project[0m[0m = "proj-demo-120"
+
+        access_config {
+            [1m[0mnat_ip[0m[0m       = "35.237.122.210"
+            [1m[0mnetwork_tier[0m[0m = "PREMIUM"
+        }
+    }
+
+    scheduling {
+        [1m[0mautomatic_restart[0m[0m   = true
+        [1m[0mon_host_maintenance[0m[0m = "MIGRATE"
+        [1m[0mpreemptible[0m[0m         = false
+    }
+
+    shielded_instance_config {
+        [1m[0menable_integrity_monitoring[0m[0m = true
+        [1m[0menable_secure_boot[0m[0m          = false
+        [1m[0menable_vtpm[0m[0m                 = true
+    }
+}[0m[0m

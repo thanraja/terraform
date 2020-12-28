@@ -1,0 +1,60 @@
+{
+  "version": 4,
+  "terraform_version": "0.12.24",
+  "serial": 6,
+  "lineage": "8e42e626-d7e4-1ced-06f8-4980ae02eccb",
+  "outputs": {
+    "zones": {
+      "value": {
+        "id": "projects/proj-demo-120/regions/us-central1",
+        "names": [
+          "us-central1-a",
+          "us-central1-b",
+          "us-central1-c",
+          "us-central1-f"
+        ],
+        "project": "proj-demo-120",
+        "region": "us-central1",
+        "status": null
+      },
+      "type": [
+        "object",
+        {
+          "id": "string",
+          "names": [
+            "list",
+            "string"
+          ],
+          "project": "string",
+          "region": "string",
+          "status": "string"
+        }
+      ]
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "google_compute_zones",
+      "name": "available",
+      "provider": "provider.google",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/proj-demo-120/regions/us-central1",
+            "names": [
+              "us-central1-a",
+              "us-central1-b",
+              "us-central1-c",
+              "us-central1-f"
+            ],
+            "project": "proj-demo-120",
+            "region": "us-central1",
+            "status": null
+          }
+        }
+      ]
+    }
+  ]
+}

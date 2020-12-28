@@ -1,0 +1,40 @@
+2020/12/27 18:42:00 [INFO] Terraform version: 0.12.24  
+2020/12/27 18:42:00 [INFO] Go runtime version: go1.12.13
+2020/12/27 18:42:00 [INFO] CLI args: []string{"/usr/local/bin/terraform", "init", "-from-module=../toplevel"}
+2020/12/27 18:42:00 [DEBUG] Attempting to open CLI config file: /home/rajesh_banupriya/.terraformrc
+2020/12/27 18:42:00 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2020/12/27 18:42:00 [INFO] CLI command args: []string{"init", "-from-module=../toplevel"}
+2020/12/27 18:42:00 [DEBUG] installing modules in .terraform/init-from-module to initialize working directory from "../toplevel"
+2020/12/27 18:42:00 [TRACE] -from-module relative path rewritten to absolute path /home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel
+2020/12/27 18:42:00 [DEBUG] Module installer: begin root
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: cleaning directory .terraform/init-from-module/root prior to install of root
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: root address "/home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel" will be handled by go-getter
+2020/12/27 18:42:00 [DEBUG] will download "/home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel" to .terraform/init-from-module/root
+2020/12/27 18:42:00 [TRACE] go-getter detectors rewrote "/home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel" to "file:///home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel"
+2020/12/27 18:42:00 [TRACE] fetching "file:///home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel" to ".terraform/init-from-module/root"
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: root "/home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel" was downloaded to .terraform/init-from-module/root
+2020/12/27 18:42:00 [DEBUG] Module installer: root installed at .terraform/init-from-module/root
+2020/12/27 18:42:00 [DEBUG] Module installer: begin root.out
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: cleaning directory .terraform/init-from-module/root.out prior to install of root.out
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: root.out has local path "./module"
+2020/12/27 18:42:00 [TRACE] ModuleInstaller: root.out uses directory from parent: .terraform/init-from-module/root/module
+2020/12/27 18:42:00 [DEBUG] Module installer: root.out installed at /home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel/module
+2020/12/27 18:42:00 [TRACE] modsdir: writing modules manifest to .terraform/init-from-module/modules.json
+2020/12/27 18:42:00 [TRACE] copying new root module from .terraform/init-from-module/root to .
+panic: Rel: can't make /home/rajesh_banupriya/terraform/plrsight/deepdive/m7/panic/toplevel/module relative to 
+
+goroutine 1 [running]:
+github.com/hashicorp/terraform/internal/initwd.DirFromModule(0x1e7474d, 0x1, 0xc000488440, 0x12, 0x7ffd73fee004, 0xb, 0xc0004bd620, 0x2351900, 0xc0004bd5c0, 0x18, ...)
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/internal/initwd/from_module.go:269 +0x36ab
+github.com/hashicorp/terraform/command.(*Meta).initDirFromModule(0xc000434540, 0x1e7474d, 0x1, 0x7ffd73fee004, 0xb, 0x2351900, 0xc0004bd5c0, 0x1, 0x0, 0x0)
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/command/meta_config.go:255 +0x19a
+github.com/hashicorp/terraform/command.(*InitCommand).Run(0xc000434540, 0xc0000b8170, 0x1, 0x1, 0xc00017e0c0)
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/command/init.go:148 +0x2b77
+github.com/mitchellh/cli.(*CLI).Run(0xc00037a280, 0xc00037a280, 0xc000537d90, 0x1)
+	/opt/teamcity-agent/work/9e329aa031982669/pkg/mod/github.com/mitchellh/cli@v1.0.0/cli.go:255 +0x1f1
+main.wrappedMain(0x0)
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/main.go:239 +0xc33
+main.realMain(0x0)
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/main.go:103 +0xb4
+main.main()
+	/opt/teamcity-agent/work/9e329aa031982669/src/github.com/hashicorp/terraform/main.go:39 +0x3b
